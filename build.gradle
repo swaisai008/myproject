@@ -8,7 +8,7 @@ mavenCentral()
 test {
 	jacoco {
 		append = true
-		destinationfile = file("$buildDir/jacoco/jacocoTest.exec")
+		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
 		classDumpDir = file("$buildDir/jacoco/classDumps")
 	}
 }
