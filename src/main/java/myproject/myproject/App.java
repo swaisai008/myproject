@@ -16,7 +16,7 @@ public class App {
 		}
 	}
 	public boolean isGreetingValid(String greeting) {
-		if(greeting.contains("welcome") 
+		if(greeting.contains("Welcome") 
 			|| greeting.contains("thanks")
 			|| greeting.contains("good afternoon")) {
 				return true;

@@ -17,10 +17,12 @@ dependencies {
      testCompile 'junit:junit:4.11'
 }
 
-task codeCoverage(type:jacocoReport) {
+task codeCoverage(type:JacocoReport) {
 	//Gather execution data from all subprojects
 	//(change this if you e.g want to calculate unit test/integration test coverage separatly
-	executionData fileTree(project.rootDir.absolutepath).include("**/build/jacoco/*.exec")
+	
+	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+	
 	//add all relavcant sourcesets from the subprojects
 	
 	sourceSets sourceSets.main
@@ -28,8 +30,8 @@ task codeCoverage(type:jacocoReport) {
 	reports{
 		xml.enabled true
 		html.enabled true
-		html.destination"${buildDir}/report/jacoco"
+		html.destination"${buildDir}/reports/jacoco"
 		csv.enabled false
 	}
 }
-
+build.dependsOn codeCoverage
