@@ -1,8 +1,37 @@
 apply plugin: 'java'
+apply plugin: 'jacoco'
 
 repositories {
 mavenCentral()
 }
-dependencies{
-testCompile 'junit:junit:4.11'
+
+test {
+jacoco {
+append = true
+destinationfile = file("$buildDir/jacoco/jacocoTest.exec")
+classDumpDir = file("$buildDir/jacoco/classDumps")
 }
+
+dependencies {
+
+     testCompile 'junit:junit:4.11'
+
+}
+
+task codeCoverage(type:jacocoReport) {
+
+//Gather execution data from all subprojects
+//(change this if you e.g want to calculate unit test/integration test coverage separatly
+executionData fileTree(project.rootDir.absolutepath).include("**/build/jacoco/*.exec")
+//add all relavcant sourcesets from the subprojects
+
+sourceSets sourceSets.main
+
+reports{
+xml.enabled true
+html.enabled true
+html.destination"${buildDir}/report/jacoco"
+csv.enabled false
+}
+}
+
